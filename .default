@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+</head>
+<body>
+    <script>
+        async function sendRequest() {
+            const responseOutput = document.getElementById('responseOutput');
+            responseOutput.value = '';
+            const input = document.getElementById('inputText').value;
+            try {
+                const response = await fetch(`?text=${encodeURIComponent(input)}`);
+                if (!response.ok) {
+                    throw new Error('ERROR');
+                }
+                console.log(response);
+                responseOutput.value = await response.text();
+            } catch (error) {
+                responseOutput.value = `ERROR: ${error.message}`;
+            }
+        }
+    </script>
+    <h1>FAQ</h1>
+    <div>
+        <label for="inputText">Input:</label>
+        <input type="text" id="inputText" placeholder="Please input question.">
+        <button type="button" onclick="sendRequest()">Send</button>
+    </div>
+    <div>
+        <label for="responseOutput">Response:</label>
+        <textarea id="responseOutput" rows="4" cols="50" readonly></textarea>
+    </div>
+</body>
+</html>

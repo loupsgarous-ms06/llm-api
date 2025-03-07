@@ -2,6 +2,7 @@ from http.server import BaseHTTPRequestHandler
 import logging
 from urllib.parse import parse_qs, urlparse
 import LanguageModel
+import os
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -23,8 +24,9 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header('Content-Type', 'text/html; charset=utf-8')
             self.send_header('Access-Control-Allow-Origin', '*')
             self.end_headers()
-            with open(".icon", mode = "rb") as fp:
-                self.wfile.write(fp.read())
+            if os.path.isfile(".icon"):
+                with open(".icon", mode = "rb") as fp:
+                    self.wfile.write(fp.read())
             return None
         elif self.path == ("/" or "/index.html"):
             self.send_response(200)
