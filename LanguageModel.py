@@ -1,5 +1,6 @@
 import datetime
 import logging
+import os
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 import re
@@ -23,14 +24,19 @@ class LanguageModel():
     def build_prompt(self, user_query, inputs=""):
         with open(".prompt", mode = "r") as fp:
             PROMPT = fp.read()
-        with open(".opmanual", mode = "r") as fp:
-            DOCUMENT = fp.read()
-
-        prompt = [
-            {"role": "system", "content": PROMPT},
-            {"role": "document", "content": DOCUMENT},
-            {"role": "user", "content": user_query},
-        ]
+        if os.path.isfile(".document"):
+            with open(".document", mode = "r") as fp:
+                DOCUMENT = fp.read()
+            prompt = [
+                {"role": "system", "content": PROMPT},
+                {"role": "document", "content": DOCUMENT},
+                {"role": "user", "content": user_query},
+            ]
+        else:
+            prompt = [
+                {"role": "system", "content": PROMPT},
+                {"role": "user", "content": user_query},
+            ]
         return prompt
     
     def generator(self,text:str) -> str:
