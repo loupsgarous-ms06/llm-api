@@ -28,7 +28,7 @@ class Handler(BaseHTTPRequestHandler):
                 with open(".icon", mode = "rb") as fp:
                     self.wfile.write(fp.read())
             return None
-        elif self.path == ("/" or "/index.html"):
+        elif self.path == "/":
             self.send_response(200)
             self.send_header('Content-Type', 'text/html; charset=utf-8')
             self.send_header('Access-Control-Allow-Origin', '*')
