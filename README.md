@@ -20,4 +20,4 @@ for host llm api easily
    python server.py model_name_any_you_want_host
    ```
 
-1. access to ```localhost:8080```, or　```curl localhost:8080 --data-urlencode "text=$YOUR_QUERY"```
+1. access to ```localhost:8080```, or ```curl localhost:8080 --data-urlencode "text=$YOUR_QUERY"```

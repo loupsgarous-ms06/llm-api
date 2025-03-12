@@ -1,11 +1,12 @@
 import datetime
 import logging
 import os
-from transformers import AutoTokenizer, AutoModelForCausalLM
-import torch
 import re
 
-class LanguageModel():
+import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+class Model():
     instance = None
 
     def __new__(cls,model_name):

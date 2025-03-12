@@ -1,14 +1,14 @@
-from http.server import BaseHTTPRequestHandler
 import logging
-from urllib.parse import parse_qs, urlparse
-import LanguageModel
 import os
+from http.server import BaseHTTPRequestHandler
+from urllib.parse import parse_qs, urlparse
+from LanguageModel import Model
 
+class HTTPHandler(BaseHTTPRequestHandler):
 
-class Handler(BaseHTTPRequestHandler):
-
-    def __init__(self, model:LanguageModel):
-        self.lm = model
+    def __init__(self, *args, **kwargs):
+        self.lm:Model = kwargs.pop('model', None)
+        super().__init__(*args, **kwargs)
 
     def do_OPTIONS(self):
         self.send_response(200, "ok")
