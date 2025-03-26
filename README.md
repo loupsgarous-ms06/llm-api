@@ -17,10 +17,11 @@ for host llm api easily
 
 1. Run
    ```sh
-   python server.py model_name/you_want_to_host
+   python server.py model_name/you_want_to_host [-p $PORT_NUMBER]
    ```
+   - ```port``` argument is optional (default:8080).
 
-1. access to ```localhost:8080```, or ```curl localhost:8080 --data-urlencode "text=$YOUR_QUERY"```
+1. access to ```localhost:$PORT_NUMBER```, or ```curl localhost:8080 --data-urlencode "text=$YOUR_QUERY"```
 
 ## Limitation
 
