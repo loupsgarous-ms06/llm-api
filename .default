@@ -7,6 +7,8 @@
 </head>
 <body>
     <script>
+        
+        document.addEventListener('DOMContentLoaded',pageLoad)
         async function sendRequest() {
             const responseOutput = document.getElementById('responseOutput');
             responseOutput.value = '';
@@ -20,6 +22,16 @@
                 responseOutput.value = await response.text();
             } catch (error) {
                 responseOutput.value = `ERROR: ${error.message}`;
+            }
+        }
+        function pageLoad(){
+            var textbox = document.getElementById('inputText');
+            textbox.addEventListener('keydown', enterKeyPress);
+        }
+
+        function enterKeyPress(event){
+            if(event.key === 'Enter'){
+                sendRequest()
             }
         }
     </script>
