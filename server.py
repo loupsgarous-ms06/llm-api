@@ -8,7 +8,7 @@ from LanguageModel import Model
 
 parser = argparse.ArgumentParser()
 parser.add_argument("model_name", help="Language model name you want to host.")
-parser.add_argument("-p", "--port", help="Port numper you want to host the API")
+parser.add_argument("-p", "--port", help="Port numper you want to host the API",type=int)
 args = parser.parse_args()
 
 class MultiThreadHTTPServer(ThreadingMixIn, HTTPServer):
