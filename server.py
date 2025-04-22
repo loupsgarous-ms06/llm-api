@@ -28,5 +28,5 @@ def run_server(model_name:str, port_number:int = 8080, hostname:str = ""):
 if __name__ == "__main__":
     model_name:str = args.model_name
     port_number:int = args.port if args.port else None
-    logging.basicConfig(filename = f"{model_name.split("/")[1]}.log", encoding='utf-8', level=logging.INFO)
+    logging.basicConfig(filename = model_name.split("/")[1] +".log", encoding='utf-8', level=logging.INFO)
     run_server(model_name, args.port)if args.port else run_server(model_name)
